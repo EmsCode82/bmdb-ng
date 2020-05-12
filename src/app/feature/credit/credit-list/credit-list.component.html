@@ -1,0 +1,20 @@
+<span class='component-title'>[{{title}}]</span>
+<span>+</span>
+<table *ngIf="credits" class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Actor</th>
+            <th>Movie</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let credit of credits">
+            <td>{{ credit.id }}</td>
+            <td>{{ credit.actor }}</td>
+            <td>{{ credit.movie }}</td>
+            <td>{{ credit.role  }}</td>
+        </tr>
+    </tbody>
+</table>
