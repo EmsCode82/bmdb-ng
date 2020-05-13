@@ -1,10 +1,8 @@
 <span class='component-title'>[{{title}}]</span>
-
 <span ><a routerLink='/credit/create'><img width='20' height='20' 
         src='assets/add-icon.png' title='Add New'>
        </a>
 </span>
-
 <table *ngIf='credits' class="table table-sm table-striped">
     <thead>
         <tr>
@@ -14,14 +12,11 @@
     <tbody>
         <tr *ngFor='let credit of credits'>
             <td>{{credit.id}}</td><td>{{credit.actor.lastName}}, {{credit.actor.firstName}}</td><td>{{credit.movie.title}}</td><td>{{credit.role}}</td>
-            <td>D | E</td>
-                       
             <td>
                 <a routerLink='/credit/detail/{{credit.id}}'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
                     | 
                 <a routerLink='/credit/edit/{{credit.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
             </td>
-
         </tr>
     </tbody>
 </table>

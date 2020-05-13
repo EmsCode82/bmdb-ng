@@ -1,26 +1,30 @@
-<div *ngIf="credit" class="component">
+<div class="component" *ngIf="credit">
     <section class="heading">
         <span class="page-title font-weight-bold font-italic">{{title}}</span>
-        <span> | <a routerlink="/credit/list">Return to List</a></span>
+        <span> | <a routerLink="/credit/list">Return to list...</a></span>
     </section>
     <main class="single">
         <table class="table table-sm">
             <tr>
-                <td>ID</td>
-                <td>{{credit.id}}</td>                
-            </tr>            
-            <tr>
-                <td>Actor:</td>                
-                <td><input [(ngModel)]="credit.actor" class="rounded" type="text" disabled></td>
+                <td>Actor:</td>
+                <td>
+                    <select [(ngModel)]="credit.actor" class="rounded">
+                        <option *ngFor="let actor of actors" [ngValue]='actor'>{{actor.lastName+", "+actor.firstName}}</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Movie:</td>
-                <td><input [(ngModel)]="credit.movie" class="rounded" type="text" disabled></td>
+                <td>
+                    <select [(ngModel)]="credit.movie" class="rounded">
+                        <option *ngFor="let movie of movies" [ngValue]='movie'>{{movie.title}}</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Role:</td>
-                <td><input [(ngModel)]="credit.role" class="rounded" type="text" disabled></td>
-            </tr> 
+                <td><input [(ngModel)]="credit.role" class="rounded" type="text"></td>
+            </tr>
         </table>
     </main>
     <span>

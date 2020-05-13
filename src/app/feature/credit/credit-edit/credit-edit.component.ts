@@ -26,7 +26,7 @@ export class CreditEditComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // get the credit from the url
+    // get the credit id from the url
     this.route.params.subscribe(parms => this.creditId = parms['id']);
     // get the credit for the id passed in url
     this.creditSvc.get(this.creditId).subscribe(jr => {
@@ -40,29 +40,27 @@ export class CreditEditComponent implements OnInit {
     this.movieSvc.list().subscribe(jr => {
       this.movies = jr.data as Movie[];
     });
-    
-  }
 
+  }
 
   save() {
     this.creditSvc.edit(this.credit).subscribe(jr => {
-      if (jr.errors == null) {
+      if (jr.errors==null) {
         this.router.navigateByUrl("/credit/list");
       }
       else {
-        console.log("*** Error editing credit:  ", this.credit, jr.errors);
+        console.log("*** Error editing credit:  ",this.credit,jr.errors);
         alert("Error editing Credit.  Try Again.");
       }
     });
   }
-  
+
   compMovie(a: Movie, b: Movie): boolean {
     return a && b && a.id === b.id;
   }
-  
+
   compActor(a: Actor, b: Actor): boolean {
     return a && b && a.id === b.id;
   }
+
 }
-
-
