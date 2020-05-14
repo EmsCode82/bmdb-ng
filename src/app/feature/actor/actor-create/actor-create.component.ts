@@ -30,5 +30,6 @@ export class ActorCreateComponent implements OnInit {
       }
     });
   }
+  backClicked() {}
 
 }

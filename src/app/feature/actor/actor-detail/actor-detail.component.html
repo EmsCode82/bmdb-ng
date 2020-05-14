@@ -1,44 +1,55 @@
 <div *ngIf="actor" class="component">
     <section class="heading">
-        <span class="page-title font-weight-bold font-italic">{{title}}</span>
-        <span> | <a routerlink="/actor/list">Return to List</a></span>
+      <span class="page-title front weight-bold font-italic">{{ title }}</span>
+      <span> | <a routerLink="actor/list">Return to List</a></span>
     </section>
     <main class="single">
+      <table class="table table-sm">
+        <tr>
+          <td>ID</td>
+          <td>{{ actor.id }}</td>
+        </tr>
+        <tr>
+          <td>First Name:</td>
+          <td>
+            <input [(ngModel)]="actor.firstName" class="rounded" type="text" disabled/>
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>
+            <input [(ngModel)]="actor.lastName" class="rounded" type="text" disabled/>
+          </td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td>
+            <input [(ngModel)]="actor.gender" class="rounded" type="text" disabled/>
+          </td>
+        </tr>
+        <tr>
+          <td>Birth Date:</td>
+          <td>
+            <input [(ngModel)]="actor.birthDate" class="rounded" type="text"disabled/>
+          </td>
+        </tr>
+        <tr>
+          <h1>Filmography</h1>
+        </tr>
         <table class="table table-sm">
-            <tr>
-                <td>ID</td>
-                <td>{{actor.id}}</td>                
-            </tr>
-            <tr>
-                <td>First Name:</td>
-                <td><input [(ngModel)]="actor.firstName" class="rounded" type="text" disabled></td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td><input [(ngModel)]="actor.lastName" class="rounded" type="text" disabled></td>
-            </tr>
-            <tr>
-                <td>Gender:</td>
-                <td><input [(ngModel)]="actor.gender" class="rounded" type="text" disabled></td>
-            </tr>
-            <tr>
-                <td>Birthdate:</td>
-                <td><input [(ngModel)]="actor.birthDate" class="rounded" type="text" disabled></td>
-            </tr> 
-        </table>
-        <table>
-            <td>Movie:</td>
-            <td><input [(ngModel)]="credit.movie" type="text" disabled></td>
-        </table>
-        <table>
-            <td>Role:</td>
-            <td><input [(ngModel)]="credit.role" type="text" disabled></td>
-        </table>
+          <tr>
+              <th>Movie</th>
+              <th>Role</th>
+          </tr>
+          <tr *ngFor="let credit of credits">
+            <td><input [(ngModel)]="credit.movie.title" class="rounded" type="text" disabled></td>
+            <td><input [(ngModel)]="credit.role" class="rounded" type="text" disabled></td>
+          </tr>
+      </table>
+      </table>
     </main>
     <span>
-        <span><a routerLink="/actor/edit/{{actor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
-        <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
-        <span> | <button (click)="filmography()" class="btn btn-sm btn-info">Filmography</button></span>
-        
-    </span>
-</div>
+      <span><a routerLink="/actor/edit/{{actor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
+      <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+  </span>
+  </div>

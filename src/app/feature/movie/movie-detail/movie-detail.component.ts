@@ -8,42 +8,43 @@ import { CreditService } from 'src/app/service/credit.service';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css']
+  styleUrls: ['./movie-detail.component.css'],
 })
 export class MovieDetailComponent implements OnInit {
   movie: Movie = new Movie();
-  title: string = 'Movie-Detail';
+  title: string = 'Movie-detail';
   movieId: number = 0;
   credits: Credit[] = [];
 
-  constructor(private movieSvc: MovieService,
-              private creditSvc: CreditService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor(
+    private creditSvc: CreditService,
+    private movieSvc: MovieService,
+    private router: Router,
+    private route: ActivatedRoute // pulls id from the 'activated/current' route
+  ) {}
 
   ngOnInit(): void {
-    // get the id from the route
-    this.route.params.subscribe(parms => this.movieId= parms['id']);
-    // get the movie for that movieId
-    this.movieSvc.get(this.movieId).subscribe(jr => {
+    // get the ID from the route
+    // current route| subscribe to the parameter|
+    this.route.params.subscribe((parms) => (this.movieId = parms['id']));
+    // get the movie for the movieId
+    this.movieSvc.get(this.movieId).subscribe((jr) => {
       this.movie = jr.data as Movie;
-      console.log("Movie Found!", this.movie);
+      console.log('Movie found! ', this.movie);
     });
     // get the credits for this movie
-    this.creditSvc.getAllActorsForMovie(this.movieId).subscribe(jr => {
+    this.creditSvc.getAllActorsForMovie(this.movieId).subscribe((jr) => {
       this.credits = jr.data as Credit[];
     });
-
-
   }
+
   delete() {
-    this.movieSvc.delete(this.movieId).subscribe(jr => {
+    this.movieSvc.delete(this.movieId).subscribe((jr) => {
       if (jr.errors == null) {
-        console.log(jr.data);
-        this.router.navigateByUrl("/movie/list");
-      }
-      else {
-        console.log("*** Error deleting movie!", this.movieId, jr.errors);
+        console.log(jr.data as string);
+        this.router.navigateByUrl('/movie/list');
+      } else {
+        console.log('***Error deleting movie.***', this.movieId, jr.errors);
       }
     });
   }
