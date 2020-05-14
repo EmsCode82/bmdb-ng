@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Actor } from 'src/app/model/actor.class';
 import { ActorService } from 'src/app/service/actor.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CreditService } from 'src/app/service/credit.service';
 
 @Component({
   selector: 'app-actor-detail',
@@ -14,12 +15,13 @@ export class ActorDetailComponent implements OnInit {
   actorId: number = 0;
 
   constructor(private actorSvc: ActorService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+    private router: Router,
+    private creditSvc: CreditService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // get the id from the route
-    this.route.params.subscribe(parms => this.actorId= parms['id']);
+    this.route.params.subscribe(parms => this.actorId = parms['id']);
     // get the movie for that movieId
     this.actorSvc.get(this.actorId).subscribe(jr => {
       this.actor = jr.data as Actor;
@@ -36,5 +38,8 @@ export class ActorDetailComponent implements OnInit {
         console.log("*** Error deleting actor!", this.actorId, jr.errors);
       }
     });
+
+
+
   }
 }

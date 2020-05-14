@@ -1,13 +1,13 @@
 <div *ngIf="movie" class="component">
     <section class="heading">
         <span class="page-title font-weight-bold font-italic">{{title}}</span>
-        <span> | <a routerlink="/movie/list">Return to List</a></span>
+        <span> | <a routerLink="/movie/list">Return to List</a></span> 
     </section>
     <main class="single">
         <table class="table table-sm">
             <tr>
                 <td>ID</td>
-                <td>{{movie.id}}</td>                
+                <td>{{movie.id}}</td>
             </tr>
             <tr>
                 <td>Title:</td>
@@ -19,13 +19,25 @@
             </tr>
             <tr>
                 <td>Year:</td>
-                <td><input [(ngModel)]="movie.year" class="rounded" type="number" disabled></td>
+                <td><input [(ngModel)]="movie.year" class="rounded" type="text" disabled></td>
             </tr>
             <tr>
                 <td>Director:</td>
                 <td><input [(ngModel)]="movie.director" class="rounded" type="text" disabled></td>
-            </tr> 
-        </table>
+            </tr>
+         </table>
+         <h1>Credits</h1>
+         <table class="table table-sm">
+             <tr>
+                 <th>Role</th>
+                 <th>Actor</th>
+             </tr>
+             <tr *ngFor="let credit of credits">
+                <td><input [(ngModel)]="credit.role" class="rounded" type="text" disabled></td>
+                <td><input [(ngModel)]="credit.actor.lastName + ', '+credit.actor.firstName" class="rounded" type="text" disabled></td>
+             </tr>
+
+         </table>
     </main>
     <span>
         <span><a routerLink="/movie/edit/{{movie.id}}" class="btn btn-sm btn-warning">Edit</a></span>

@@ -26,9 +26,19 @@
                 <td><input [(ngModel)]="actor.birthDate" class="rounded" type="text" disabled></td>
             </tr> 
         </table>
+        <table>
+            <td>Movie:</td>
+            <td><input [(ngModel)]="credit.movie" type="text" disabled></td>
+        </table>
+        <table>
+            <td>Role:</td>
+            <td><input [(ngModel)]="credit.role" type="text" disabled></td>
+        </table>
     </main>
     <span>
         <span><a routerLink="/actor/edit/{{actor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
         <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+        <span> | <button (click)="filmography()" class="btn btn-sm btn-info">Filmography</button></span>
+        
     </span>
 </div>
